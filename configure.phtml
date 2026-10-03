@@ -1,0 +1,42 @@
+<?php
+declare(strict_types=1);
+/** @var AlphaXivPapersExtension $this */
+?>
+<p><?= _t('ext.alphaxiv_papers.intro') ?></p>
+<form action="<?= _url('extension', 'configure', 'e', urlencode($this->getName())) ?>" method="post">
+	<input type="hidden" name="_csrf" value="<?= FreshRSS_Auth::csrfToken() ?>" />
+	<div class="form-group">
+		<label class="group-name" for="min_likes"><?= _t('ext.alphaxiv_papers.min_likes') ?></label>
+		<div class="group-controls">
+			<input type="number" id="min_likes" name="min_likes" min="0" max="<?= AlphaXivPapers::MIN_LIKES_MAX ?>" step="1" required="required" value="<?= $this->minLikes() ?>" />
+			<p class="help"><?= _i('help') ?> <?= _t('ext.alphaxiv_papers.min_likes_help') ?></p>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="group-name" for="interval"><?= _t('ext.alphaxiv_papers.interval') ?></label>
+		<div class="group-controls">
+			<select id="interval" name="interval">
+				<?php foreach (AlphaXivPapers::INTERVALS as $interval) { ?>
+				<option value="<?= $interval ?>"<?= $interval === $this->interval() ? ' selected="selected"' : '' ?>><?= _t('ext.alphaxiv_papers.intervals.' . strtolower(str_replace(' ', '_', $interval))) ?></option>
+				<?php } ?>
+			</select>
+			<p class="help"><?= _i('help') ?> <?= _t('ext.alphaxiv_papers.interval_help') ?></p>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="group-controls">
+			<label class="checkbox" for="title_likes">
+				<input type="checkbox" name="title_likes" id="title_likes" value="1"<?= $this->titleLikes() ? ' checked="checked"' : '' ?> />
+				<?= _t('ext.alphaxiv_papers.title_likes') ?>
+			</label>
+			<p class="help"><?= _i('help') ?> <?= _t('ext.alphaxiv_papers.title_likes_help') ?></p>
+		</div>
+	</div>
+	<p><?= _t('ext.alphaxiv_papers.url_settings') ?></p>
+	<div class="form-group form-actions">
+		<div class="group-controls">
+			<button type="submit" class="btn btn-important"><?= _t('gen.action.submit') ?></button>
+			<button type="reset" class="btn"><?= _t('gen.action.cancel') ?></button>
+		</div>
+	</div>
+</form>

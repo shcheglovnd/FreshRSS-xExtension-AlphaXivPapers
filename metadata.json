@@ -1,0 +1,8 @@
+{
+	"name": "alphaXiv Papers",
+	"author": "shcheglovnd",
+	"description": "alphaXiv’s papers as a feed of those with at least a given number of likes, including the papers that reach it weeks later. Subscribe to https://www.alphaxiv.org/?sort=Likes, or e.g. https://www.alphaxiv.org/?sort=Likes&interval=30+Days&min_likes=200.",
+	"version": "0.1.0",
+	"entrypoint": "AlphaXivPapers",
+	"type": "user"
+}
